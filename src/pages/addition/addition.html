@@ -1,0 +1,30 @@
+<ion-content padding style="background-image: url('assets/background-image.png'); background-size: 100% 100%;
+         background-repeat: no-repeat;">
+
+  <button class="custom-button" ion-button (click)='GoBack()'>
+    Back
+  </button>
+  <ion-grid>
+
+    <ion-row>
+      <ion-card class="question-card">
+        {{firstNumber}} + {{secondNumber}}
+      </ion-card>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 *ngFor='let result of resultArray'>
+        <button col-12 class="custom-button" ion-button (click)='chooseResult(result)'> {{result}}</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row [hidden]='!wrongAnswer' style="min-height: 15px;">
+      <div col-12 style="text-align:center !important;">
+        Odgovor nije tacan, probaj ponovo! :)
+      </div>
+    </ion-row>
+
+  </ion-grid>
+
+
+</ion-content>
