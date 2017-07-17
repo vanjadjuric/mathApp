@@ -1,18 +1,29 @@
-<!--
-  Generated template for the SubtractionPage page.
+<ion-content padding style="background-color: burlywood;">
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+  <button [hidden]='!showPage' class="custom-button" ion-button (click)='GoBack()'>
+    Back
+  </button>
+  <ion-grid [hidden]='!showPage'>
 
-  <ion-navbar>
-    <ion-title>subtraction</ion-title>
-  </ion-navbar>
+    <ion-row>
+      <ion-card class="question-card">
+        {{firstNumber}} - {{secondNumber}}
+      </ion-card>
+    </ion-row>
 
-</ion-header>
+    <ion-row>
+      <ion-col col-6 *ngFor='let result of resultArray'>
+        <button col-12 class="custom-button" ion-button (click)='chooseResult(result)'> {{result}}</button>
+      </ion-col>
+    </ion-row>
 
+    <ion-row [hidden]='!wrongAnswer' style="min-height: 15px;">
+      <div col-12 style="text-align:center !important;">
+        Odgovor nije tacan, probaj ponovo! :)
+      </div>
+    </ion-row>
 
-<ion-content padding>
+  </ion-grid>
+
 
 </ion-content>

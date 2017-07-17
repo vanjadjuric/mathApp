@@ -1,3 +1,4 @@
+import { AdditionPage } from '../addition/addition';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
@@ -13,7 +14,11 @@ export class SuccessModalPage {
 
 
   GoBack() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss('again');
+  }
+
+  GoToHome() {
+    this.viewCtrl.dismiss('home');
   }
 
 }

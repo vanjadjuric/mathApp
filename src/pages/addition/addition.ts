@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { SuccessModalPage } from '../success-modal/success-modal';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 @IonicPage()
 @Component({
@@ -8,6 +9,8 @@ import { SuccessModalPage } from '../success-modal/success-modal';
   templateUrl: 'addition.html',
 })
 export class AdditionPage {
+  diffLevel: any;
+  showPage: boolean = true;
   resultArray: Array<any> = Array<any>();
   firstNumber: number;
   secondNumber: number;
@@ -15,25 +18,42 @@ export class AdditionPage {
   questionNumber = 0;
   wrongAnswer = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private admobFree: AdMobFree) {
+    this.diffLevel = this.navParams.get('diffLevel');
     this.GenerateTask();
+
+    const bannerConfig: AdMobFreeBannerConfig = {
+      // add your config here
+      // for the sake of this example we will just use the test config
+      isTesting: true,
+      autoShow: true
+    };
+    this.admobFree.banner.config(bannerConfig);
+
+    this.admobFree.banner.prepare()
+      .then(() => {
+        // banner Ad is ready
+        // if we set autoShow to false, then we will need to call the show method here
+      })
+      .catch(e => console.log(e));
   }
 
 
+
   GoBack() {
-    this.navCtrl.pop();
+    this.navCtrl.popToRoot();
   }
 
 
   GenerateTask() {
     this.questionNumber++;
     this.resultArray = [];
-    this.firstNumber = Math.floor((Math.random() * 10) + 1);
-    this.secondNumber = Math.floor((Math.random() * 10) + 1);
+    console.log('diff level:' + this.diffLevel + '---' + this.diffLevel * 2);
+    this.firstNumber = this.getRandomInt(this.diffLevel, this.diffLevel * 2);
+    this.secondNumber = this.getRandomInt(this.diffLevel, this.diffLevel * 2);
     this.result = this.firstNumber + this.secondNumber;
 
     let resultPosition = Math.floor((Math.random() * 4) + 1);
-    console.log('---------' + resultPosition);
     for (var index = 1; index < 5; index++) {
       let randomResult = this.getRandomInt(this.result - 7, this.result + 7);
       if (index == resultPosition) {
@@ -42,8 +62,9 @@ export class AdditionPage {
       else {
         this.resultArray.push(randomResult);
       }
-      console.log(index);
     }
+
+
   }
 
   getRandomInt(min, max) {
@@ -56,12 +77,23 @@ export class AdditionPage {
   }
 
   chooseResult(selectedResult) {
-    console.log(selectedResult);
     if (selectedResult == this.result) {
-      console.log('tacno!!');
-      if (this.questionNumber == 3) {
+      console.log(this.questionNumber);
+      if (this.questionNumber == 1) {
         let modal = this.modalCtrl.create(SuccessModalPage);
         modal.present();
+        this.showPage = false;
+        modal.onDidDismiss(data => {
+          if (data == 'again') {
+            this.questionNumber = 0;
+            this.GenerateTask();
+            this.showPage = true;
+          }
+          else if (data == 'home') {
+            this.navCtrl.popToRoot();
+          }
+
+        });
       } else {
         this.wrongAnswer = false;
         this.GenerateTask();

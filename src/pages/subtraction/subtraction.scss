@@ -1,3 +1,15 @@
 page-subtraction {
-
+  .question-card {
+    margin-top: 100px;
+    background-color: darksalmon !important;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    min-height: 130px;
+    text-align: center;
+    font-size: 50px; //font-family: 'Gloria Hallelujah', cursive;
+  }
+  .custom-button {
+    background-color: salmon;
+    color: black;
+  }
 }

@@ -1,15 +1,15 @@
 page-success-modal {
   .question-card {
     margin-top: 100px;
-    background-color: salmon !important;
+    background-color: white !important;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     min-height: 130px;
     text-align: center;
-    font-size: 30px;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 30px; //font-family: 'Gloria Hallelujah', cursive;
   }
   .custom-button {
-    background-color: salmon;
+    background-color: white;
+    color: black;
   }
 }

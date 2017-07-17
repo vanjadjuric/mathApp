@@ -1,10 +1,9 @@
-<ion-content padding style="background-image: url('assets/background-image.png'); background-size: 100% 100%;
-         background-repeat: no-repeat;">
+<ion-content padding style="background-color: burlywood;">
 
-  <button class="custom-button" ion-button (click)='GoBack()'>
+  <button [hidden]='!showPage' class="custom-button" ion-button (click)='GoBack()'>
     Back
   </button>
-  <ion-grid>
+  <ion-grid [hidden]='!showPage'>
 
     <ion-row>
       <ion-card class="question-card">

@@ -1,5 +1,4 @@
-<ion-content padding style="background-image: url('assets/background-image.png'); background-size: 100% 100%;
-         background-repeat: no-repeat;">
+<ion-content padding style="background-color: burlywood;">
 
   <!--<ion-card class="ion-card" style="background-image: url('assets/oduzimanje.jpg');">
     <ion-card-header class="ion-header">
@@ -7,20 +6,24 @@
     </ion-card-header>
   </ion-card>-->
 
-  <ion-card style="margin-top:150px;" (click)='GoToAddition()'>
-    <img src="assets/sabiranje1.png" />
+  <ion-card text-center class="ion-card" style="margin-top:150px;" (click)='GoToDifficulty("AdditionPage")'>
+    <!--<img src="assets/sabiranje1.png" />-->
+    SABIRANJE
   </ion-card>
 
-  <ion-card style="margin-top:20px;">
-    <img src="assets/oduzimanje.png" />
+  <ion-card text-center class="ion-card" style="margin-top:20px;" (click)='GoToDifficulty("SubtractionPage")'>
+    <!--<img src="assets/oduzimanje.png" />-->
+    ODUZIMANJE
   </ion-card>
 
-  <ion-card style="margin-top:20px;">
-    <img src="assets/mnozenje.png" />
+  <ion-card text-center class="ion-card" style="margin-top:20px;" (click)='GoToDifficulty("MultiplyPage")'>
+    <!--<img src="assets/mnozenje.png" />-->
+    MNOZENJE
   </ion-card>
 
-  <ion-card style="margin-top:20px;">
-    <img src="assets/deljenje.png" />
+  <ion-card text-center class="ion-card" style="margin-top:20px;" (click)='GoToDifficulty("DividePage")'>
+    <!--<img src="assets/deljenje.png" />-->
+    DELJENJE
   </ion-card>
 
   <!--<ion-card class="ion-card" style="background-image: url('assets/sabiranje2.png'); opacity:0.7;">

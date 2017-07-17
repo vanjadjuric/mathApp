@@ -1,0 +1,15 @@
+<ion-content padding style="background-color: burlywood;">
+
+  <button ion-button class="custom-button" (click)='GoToHome()'> Go back </button>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 *ngFor='let difficulty of Difficulties'>
+        <button col-12 class="custom-button" ion-button (click)='chooseDifficulty(difficulty.diffLevel)'>
+           {{difficulty.name}}</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>
